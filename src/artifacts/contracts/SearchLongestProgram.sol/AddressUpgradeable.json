@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "AddressUpgradeable",
+  "sourceName": "contracts/SearchLongestProgram.sol",
+  "abi": [],
+  "bytecode": "0x60808060405234601757603a9081601d823930815050f35b600080fdfe600080fdfea264697066735822122076a349c23f65a65e0a0e03bd108e16865bea904a439f50aefe6190b7ce01a81264736f6c63430008110033",
+  "deployedBytecode": "0x600080fdfea264697066735822122076a349c23f65a65e0a0e03bd108e16865bea904a439f50aefe6190b7ce01a81264736f6c63430008110033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

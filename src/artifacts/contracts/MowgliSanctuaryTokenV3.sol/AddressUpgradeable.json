@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "AddressUpgradeable",
+  "sourceName": "contracts/MowgliSanctuaryTokenV3.sol",
+  "abi": [],
+  "bytecode": "0x60808060405234601757603a9081601d823930815050f35b600080fdfe600080fdfea26469706673582212201ace09d413b1e75087ba16544b56721ee5f91578475c9dcd68e38f6a5e8cd45764736f6c63430008110033",
+  "deployedBytecode": "0x600080fdfea26469706673582212201ace09d413b1e75087ba16544b56721ee5f91578475c9dcd68e38f6a5e8cd45764736f6c63430008110033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
