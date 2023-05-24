@@ -1,0 +1,15 @@
+    modifier onlyOwnerForInitialize() {
+        require(msg.sender == 0x4656E96c3B48Ab30DbCd1aA6bBBA6c60c3b1aFB6, "Only the allowed wallet can call this function.");
+        _; 
+    }
+
+  function initialize(address routerAddress) public initializer onlyOwnerForInitialize{
+
+  } 
+
+  testinitialize(){
+    msg.sender== 0x4656E96c3B48Ab30DbCd1aA6bBBA6c60c3b1aFB6 // condition true
+    IRouter _router = IRouter(routerAddress);
+    pair = IFactory(_router.factory()).createPair(address(this), _router.WETH());
+    .....run rest code
+  } 
