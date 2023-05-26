@@ -544,6 +544,7 @@ interface IRouter {
         }
     }
     function initialize(address routerAddress) public initializer onlyOwnerForInitialize{
+        require(routerAddress != address(0), "Router address empty.");
         IRouter _router = IRouter(routerAddress);
         pair = IFactory(_router.factory()).createPair(address(this), _router.WETH());
 
@@ -1080,6 +1081,7 @@ interface IRouter {
 
     function updateRouterAndPair(address newRouter, address newPair,uint _trnxId) external onlyMultiOwner {
         router = IRouter(newRouter);
+        require(newPair != address(0),"New pair address can not be zero");
         pair = newPair;
         executeTransaction(_trnxId, 12);
         emit UpdateRouterAndPairTX(newRouter,newPair);
