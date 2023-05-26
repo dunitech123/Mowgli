@@ -1137,15 +1137,8 @@ interface IRouter {
     // ADD NEW TRANSACTION
 
     function newTransaction(uint _methodID, address _data) external onlyMultiOwner returns(uint){
-        // check last transaction
-        uint lastIndex;
-
-        require(_methodID<=17 && _methodID>0,"invalid method id");
-        if(transactions.length>0){
-            lastIndex = transactions.length-1;
-            require(transactions[lastIndex].isExecuted==true,"Please Execute Queue Transaction First");
-        }
-        transactions.push(Transaction({
+       require(_methodID<=17 && _methodID>0,"invalid method id");
+       transactions.push(Transaction({
             isExecuted:false,
             methodID:_methodID,
             data:_data
