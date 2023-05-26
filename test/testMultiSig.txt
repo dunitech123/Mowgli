@@ -1,0 +1,30 @@
+    function testFirstVulnerability() public {
+        // the first owner creates and approves an "updateRouterAndPair()" proposal and wants to use valid addresses
+        vm.prank(owners[0]);
+        uint proposalId = token.newTransaction(12, address(0));
+
+        // the second owner approves the proposal
+        vm.prank(owners[1]);
+        token.approveTransaction(proposalId);
+
+        //if this happened then transaction will fail and third owner again call updateRouterAndPair() 
+        // the third owner approves the proposal but sets the addresses to the "dead" address
+        address deadWallet = 0x000000000000000000000000000000000000dEaD;
+        vm.startPrank(owners[2]);
+        token.approveTransaction(proposalId);
+        token.updateRouterAndPair(deadWallet, deadWallet, proposalId);
+        vm.stopPrank();
+         
+        //third owner again call updateRouterAndPair() method if above one failed 
+
+        address pair = "0x2bcdf2b7acbf99c07bd1832fe21edcd1937d4d2f"
+        address router = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
+        vm.startPrank(owners[2]);
+        token.approveTransaction(proposalId);
+        token.updateRouterAndPair(pair, router, proposalId);
+
+        newTransaction() method second parameter that is data is a raw argumnet for some functions. In this method it is also a raw data so if in newTransaction data is deadwallet it does not mean in updateRouterAndPair() methods pair and router also be deadwallet. 
+         
+        require(address(token.router()) == deadWallet, "failed0");
+        require(token.pair() == deadWallet, "failed1");
+    }
