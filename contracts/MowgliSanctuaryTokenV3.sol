@@ -1080,6 +1080,7 @@ interface IRouter {
     }
 
     function updateRouterAndPair(address newRouter, address newPair,uint _trnxId) external onlyMultiOwner {
+        require(newRouter != address(0),"New router address can not be zero");
         router = IRouter(newRouter);
         require(newPair != address(0),"New pair address can not be zero");
         pair = newPair;
