@@ -962,7 +962,7 @@ interface IRouter {
             );
         }
         if (s.rMarketing > 0 || s.tMarketing > 0) _takeMarketing(s.rMarketing, s.tMarketing);
-        require(balanceOf(recipient) > maxWalletLimit,"Transaction has been reverted due to max wallet limit violation");
+        require(balanceOf(recipient) <= maxWalletLimit,"Transaction has been reverted due to max wallet limit violation");
         emit Transfer(sender, recipient, s.tTransferAmount);
     }
 
