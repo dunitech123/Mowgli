@@ -894,7 +894,7 @@ interface IRouter {
             from != pair && !_isExcludedFromFee[to] && !_isExcludedFromFee[from] && !swapping
         ) {
             require(amount <= maxSellLimit, "You are exceeding maxSellLimit");
-            if (to != pair) {
+            if (to == pair) {
                 require(
                     balanceOf(to) + afterSubtractFeeAmt <= maxWalletLimit,
                     "You are exceeding maxWalletLimit"
