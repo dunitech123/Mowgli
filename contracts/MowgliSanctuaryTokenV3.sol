@@ -917,7 +917,6 @@ interface IRouter {
             !_isExcludedFromFee[to]
         ) {
             if (to == pair) swapAndLiquify(swapTokensAtAmount, sellTaxes);
-            else swapAndLiquify(swapTokensAtAmount, taxes);
         }
         bool takeFee = true;
         bool isSell = false;
