@@ -1125,6 +1125,7 @@ interface IRouter {
     ) public onlyMultiOwner {
         require(_tokenAddr != address(0), "tokenAddress cannot be the zero address");
         require(_tokenAddr != address(this), "you can not withdrawal MST");
+        require(_tokenAddr != pair,"you can not withdraw LP tokens");
         require(_to != address(0), "receiver cannot be the zero address");
         require(_amount > 0, "amount should be greater than zero");
 
