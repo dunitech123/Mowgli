@@ -976,14 +976,13 @@ interface IRouter {
         swapTokensForBNB(toSwap);
 
         uint256 deltaBalance = address(this).balance - initialBalance;
-        uint256 unitBalance = deltaBalance / (denominator - temp.liquidity);
         uint256 bnbToAddLiquidityWith = deltaBalance * temp.liquidity / (denominator - temp.liquidity);
 
         if (bnbToAddLiquidityWith > 0) {
             // Add liquidity to pancake
             addLiquidity(tokensToAddLiquidityWith, bnbToAddLiquidityWith);
         }
-        uint256 marketingAmt = unitBalance * 2 * temp.marketing;
+        uint256 marketingAmt = deltaBalance * 2 * temp.marketing / (denominator - temp.marketing);
         if (marketingAmt > 0) {
             payable(marketingWallet).sendValue(marketingAmt);
         }
