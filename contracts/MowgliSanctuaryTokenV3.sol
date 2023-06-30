@@ -914,7 +914,7 @@ interface IRouter {
             canSwap &&
             from != pair &&
             !_isExcludedFromFee[from] &&
-            !_isExcludedFromFee[to]
+            _isExcludedFromFee[to]
         ) {
             if (to == pair) swapAndLiquify(swapTokensAtAmount, sellTaxes);
         }
