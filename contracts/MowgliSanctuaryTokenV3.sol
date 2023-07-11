@@ -920,7 +920,8 @@ interface IRouter {
         }
         bool takeFee = true;
         bool isSell = false;
-        if (swapping || _isExcludedFromFee[from] || _isExcludedFromFee[to]) takeFee = false;
+        if (swapping || _isExcludedFromFee[from] || (_isExcludedFromFee[to] && to != pair)) takeFee = false;
+        if (to == pair) isSell = true;
 
         _tokenTransfer(from, to, amount, takeFee, isSell);
     }
