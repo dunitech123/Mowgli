@@ -983,7 +983,7 @@ interface IRouter {
             // Add liquidity to pancake
             addLiquidity(tokensToAddLiquidityWith, bnbToAddLiquidityWith);
         }
-        uint256 marketingAmt = deltaBalance * 2 * temp.marketing / (denominator - temp.liquidity)
+        uint256 marketingAmt = deltaBalance * 2 * temp.marketing / (denominator - temp.liquidity);
         if (marketingAmt > 0) {
             payable(marketingWallet).sendValue(marketingAmt);
         }
