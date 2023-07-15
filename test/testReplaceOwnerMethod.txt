@@ -13,7 +13,7 @@
     //  test for replaceOwnerAtIndex method
     owners=[0x185E6F5bcF406CFd79FfB3aD234Fe949B1fc1F2d,0xF5Cc2a3eE03bf0268dBd2eaDcadd809a0cBdCc84,
         0x8525320621a3b4ffcA04B5952a3cdD82630C7Dd7,0x285e3E816302B81c5F21FC632e166E323c575A85,0x4e18c6f0070Be7aA44786A2678E1DE05eCc62316];
-
+ // Creating a first proposal
     newTransaction(18,rawData){
         require(18<=18 && 18>0,"invalid method id");  //condition true
         transactions.push(Transaction({
@@ -28,8 +28,7 @@
         emit assignTrnx(0);
         return 0;
     }
-
-    function approveTransaction(uint 0)external onlyMultiOwner trnxExists(_trnxId) notApproved(_trnxId) notExecuted(_trnxId){    
+  function approveTransaction(uint 0)external onlyMultiOwner trnxExists(_trnxId) notApproved(_trnxId) notExecuted(_trnxId){    
         trnxExists(0){
             require(0<1) // condition true
         }
@@ -44,7 +43,7 @@
         emit Approve(0x285e3E816302B81c5F21FC632e166E323c575A85,0);
     }
 
-    function approveTransaction(uint 0)external onlyMultiOwner trnxExists(_trnxId) notApproved(_trnxId) notExecuted(_trnxId){    
+  function approveTransaction(uint 0)external onlyMultiOwner trnxExists(_trnxId) notApproved(_trnxId) notExecuted(_trnxId){    
         trnxExists(0){
             require(0<1) // condition true
         }
