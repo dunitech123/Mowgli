@@ -1,0 +1,103 @@
+    function replaceOwnerAtIndex(uint256 index, address currentOwner, address newOwner,uint256 _trnxId) public onlyMultiOwner {
+        require(approved[_trnxId][currentOwner] == false,"current owner can not ne approved");
+        require(isOwner[currentOwner], "Only owners can transfer ownership.");
+        require(!isOwner[newOwner], "New owner must not be an existing owner.");
+        require(index < owners.length, "Invalid index.");
+        require(owners[index] == currentOwner, "Current owner does not match the specified index.");
+        owners[index] = newOwner;
+        isOwner[newOwner] = true;
+        delete isOwner[currentOwner];
+        executeTransaction(_trnxId, 18);
+    }
+
+    //  test for replaceOwnerAtIndex method
+    owners=[0x185E6F5bcF406CFd79FfB3aD234Fe949B1fc1F2d,0xF5Cc2a3eE03bf0268dBd2eaDcadd809a0cBdCc84,
+        0x8525320621a3b4ffcA04B5952a3cdD82630C7Dd7,0x285e3E816302B81c5F21FC632e166E323c575A85,0x4e18c6f0070Be7aA44786A2678E1DE05eCc62316];
+
+    newTransaction(18,rawData){
+        require(18<=18 && 18>0,"invalid method id");  //condition true
+        transactions.push(Transaction({
+            isExecuted:false,
+            methodID:18,
+            data:rawData
+        }));
+        approved[transactions.length-1][0x8525320621a3b4ffcA04B5952a3cdD82630C7Dd7]=true;
+        // assuming it is first newTransaction call
+        emit Approve(0x8525320621a3b4ffcA04B5952a3cdD82630C7Dd7,1-1);
+        
+        emit assignTrnx(0);
+        return 0;
+    }
+
+    function approveTransaction(uint 0)external onlyMultiOwner trnxExists(_trnxId) notApproved(_trnxId) notExecuted(_trnxId){    
+        trnxExists(0){
+            require(0<1) // condition true
+        }
+        notApproved(0){
+        require(!approved[0][0x285e3E816302B81c5F21FC632e166E323c575A85],"trnx has already done"); // not approved yet
+        }
+        notExecuted(0){
+        Transaction storage _transactions = transactions[0];
+        require(!_transactions.isExecuted,"trnx has already executed"); //condition true not executed yet because isExecuted is false
+        }
+        approved[0][0x285e3E816302B81c5F21FC632e166E323c575A85]=true;
+        emit Approve(0x285e3E816302B81c5F21FC632e166E323c575A85,0);
+    }
+
+    function approveTransaction(uint 0)external onlyMultiOwner trnxExists(_trnxId) notApproved(_trnxId) notExecuted(_trnxId){    
+        trnxExists(0){
+            require(0<1) // condition true
+        }
+        notApproved(0){
+        require(!approved[0][0x4e18c6f0070Be7aA44786A2678E1DE05eCc62316],"trnx has already done"); // not approved yet
+        }
+        notExecuted(0){
+        Transaction storage _transactions = transactions[0];
+        require(!_transactions.isExecuted,"trnx has already executed"); //condition true not executed yet because isExecuted is false
+        }
+
+        approved[0][0x4e18c6f0070Be7aA44786A2678E1DE05eCc62316]=true;
+        emit Approve(0x4e18c6f0070Be7aA44786A2678E1DE05eCc62316,0);
+    }
+
+    we will replace index 1 owner address 
+
+    testReplaceOwnerAtIndex(1,0xF5Cc2a3eE03bf0268dBd2eaDcadd809a0cBdCc84,0x643D8B3e9A9D15cBae4C45ca47F32C1C1aadaEc3,3) public onlyMultiOwner{
+        // current owner that we are going to replace is not approved before, that we saw the other three has approved the trnx
+        require(approved[0][0xF5Cc2a3eE03bf0268dBd2eaDcadd809a0cBdCc84] == false,"current owner can not ne approved");
+
+        require(isOwner[0xF5Cc2a3eE03bf0268dBd2eaDcadd809a0cBdCc84], "This address is not an owner"); // condition true
+
+        require(!isOwner[0x643D8B3e9A9D15cBae4C45ca47F32C1C1aadaEc3], "New owner must not be an existing owner."); //true
+        require(1 < 5, "Invalid index."); // true
+        require(owners[1] == 0xF5Cc2a3eE03bf0268dBd2eaDcadd809a0cBdCc84, "Current owner does not match the specified index.");  // condition true
+        owners[1] = 0x643D8B3e9A9D15cBae4C45ca47F32C1C1aadaEc3;
+        isOwner[0x643D8B3e9A9D15cBae4C45ca47F32C1C1aadaEc3] = true;
+        delete isOwner[0xF5Cc2a3eE03bf0268dBd2eaDcadd809a0cBdCc84];
+        executeTransaction(0, 18); 
+
+        executeTransaction(0, 18) internal trnxExists(_trnxId) notExecuted(_trnxId){
+
+        _getAprrovalCount(0) public view returns(uint ){
+        uint count;
+        for(uint i=0; i<5;i++){
+            when i= 0 and 1 it will false when i=2,3,4 it will true
+            if (approved[0][owners[0]]  false
+            approved[1][owners[1]]      false
+            approved[2][owners[2]]      true
+            approved[3][owners[3]]      true
+            approved[4][owners[4]]      true
+            
+            ){
+                count+=1;
+            }
+        }
+        return 3;
+        
+        require(3 >=3,"you don't have sufficient approval");
+        Transaction storage _transactions = transactions[0];
+        require(18==18,"invalid Function call");
+        _transactions.isExecuted = true;
+        emit Execute(0);
+    }
+    }
