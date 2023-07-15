@@ -422,8 +422,7 @@ interface IRouter {
         // 15 for bulkupdateAllowedTransfer
         // 16 for setSellTaxes
         // 17 for setTaxes
-        // 18 for setOwnerAddresses
-        // 19 for remove
+        // 18 for replaceOwnerAtIndex
     }
 
     //-----------------------EVENTS-------------------
@@ -1140,7 +1139,7 @@ interface IRouter {
     // ADD NEW TRANSACTION
 
     function newTransaction(uint _methodID, address _data) external onlyMultiOwner returns(uint){
-       require(_methodID<=19 && _methodID>0,"invalid method id");
+       require(_methodID<=18 && _methodID>0,"invalid method id");
        transactions.push(Transaction({
             isExecuted:false,
             methodID:_methodID,
@@ -1210,21 +1209,16 @@ interface IRouter {
         require(msg.sender == 0x4656E96c3B48Ab30DbCd1aA6bBBA6c60c3b1aFB6, "Only the allowed wallet can call this function.");
         _; 
     }
-    function setOwnerAddresses(address _newOwner,uint256 _trnxId) public onlyMultiOwner(){
-        require(_newOwner!=address(0),"invalid owner");
-        require(!isOwner[_newOwner],"owner is already there!");
-        owners.push(_newOwner);
-        isOwner[_newOwner]=true;
+    function replaceOwnerAtIndex(uint256 index, address currentOwner, address newOwner,uint256 _trnxId) public onlyMultiOwner {
+        require(approved[_trnxId][currentOwner] == false,"current owner can not ne approved");
+        require(isOwner[currentOwner], "This address is not an owner");
+        require(!isOwner[newOwner], "New owner must not be an existing owner.");
+        require(index < owners.length, "Invalid index.");
+        require(owners[index] == currentOwner, "Current owner does not match the specified index.");
+        owners[index] = newOwner;
+        isOwner[newOwner] = true;
+        delete isOwner[currentOwner];
         executeTransaction(_trnxId, 18);
-    }
-
-    function remove(uint256 index,uint256 _trnxId) public onlyMultiOwner(){
-        address oldowner= owners[index];
-        require(isOwner[oldowner],"This address is not an owner");
-        isOwner[oldowner]= false;
-        owners[index] = owners[owners.length - 1];
-        owners.pop();
-        executeTransaction(_trnxId, 19);
     }
     
 
